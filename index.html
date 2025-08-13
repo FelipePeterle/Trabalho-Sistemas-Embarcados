@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Arquitetura do Invisível: Guia Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-[#A37B73]">A Arquitetura do Invisível</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#intro" class="nav-link">Introdução</a>
+                <a href="#languages" class="nav-link">Linguagens</a>
+                <a href="#hardware" class="nav-link">Hardware</a>
+                <a href="#process" class="nav-link">Processos</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="intro" class="text-center mb-24 scroll-mt-24">
+            <h2 class="text-4xl font-bold mb-4 text-[#6D5D5A]">Onde o Software Encontra o Mundo Físico</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                Oferecemos uma jornada para explorar os pilares do desenvolvimento de sistemas embarcados: as linguagens
+                que dão vida ao hardware, a arquitetura que garante a robustez e os processos que asseguram a qualidade
+                e a segurança.
+            </p>
+        </section>
+
+        <section id="languages" class="mb-24 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D5A]">Pilares da Programação: C e Assembly</h2>
+                <p class="max-w-3xl mx-auto text-gray-600 mt-2">
+                    A escolha da linguagem é a decisão fundamental em um projeto embarcado. Ela define o nível de
+                    controle, a eficiência e a portabilidade do software. Aqui, comparamos os dois protagonistas: C, a
+                    *lingua franca* dos embarcados, e Assembly, o diálogo direto com o silício.
+                </p>
+            </div>
+
+            <div class="content-card p-6 md:p-8">
+                <div class="flex justify-center mb-6 border-b border-gray-200">
+                    <button id="btn-c" class="tab-button py-2 px-6 font-semibold rounded-t-lg active">Linguagem
+                        C</button>
+                    <button id="btn-asm" class="tab-button py-2 px-6 font-semibold rounded-t-lg">Linguagem
+                        Assembly</button>
+                </div>
+                <div id="content-c" class="space-y-4">
+                    <h3 class="text-2xl font-bold text-[#A37B73]">C: A Ponte entre Abstração e Controle</h3>
+                    <p>A linguagem C é dominante no mundo embarcado por seu equilíbrio perfeito. Ela oferece abstrações
+                        legíveis como funções e laços (`if`, `for`), ao mesmo tempo que permite o controle direto da
+                        memória através de ponteiros, essencial para manipular registradores de hardware.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Principais Vantagens:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li><strong>Eficiência:</strong> Gera código de máquina rápido e compacto.</li>
+                            <li><strong>Portabilidade:</strong> Com poucas modificações, o código C pode ser compilado
+                                para diferentes arquiteturas de processadores.</li>
+                            <li><strong>Controle de Baixo Nível:</strong> Permite manipulação direta de bits, bytes e
+                                endereços de memória.</li>
+                            <li><strong>Ecossistema Maduro:</strong> Vasta disponibilidade de compiladores, bibliotecas
+                                e ferramentas de depuração.</li>
+                        </ul>
+                    </div>
+                    <p class="pt-2"><strong>Quando usar?</strong> É a escolha padrão para a grande maioria do código de
+                        aplicação, drivers de periféricos e lógica de controle em um sistema embarcado.</p>
+                </div>
+                <div id="content-asm" class="hidden space-y-4">
+                    <h3 class="text-2xl font-bold text-[#A37B73]">Assembly: O Controle Absoluto</h3>
+                    <p>Programar em Assembly (ASM) é dar instruções diretas para a CPU. Cada linha de código corresponde
+                        a uma única operação da máquina. Não há abstração; o programador tem controle total sobre cada
+                        ciclo de clock e cada byte de memória.</p>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Principais Vantagens:</h4>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li><strong>Performance Máxima:</strong> Permite otimizações manuais que nenhum compilador
+                                consegue igualar.</li>
+                            <li><strong>Controle Preciso de Tempo:</strong> Essencial para rotinas onde o tempo de
+                                execução deve ser determinístico.</li>
+                            <li><strong>Acesso a Instruções Específicas:</strong> Permite usar funcionalidades do
+                                processador não expostas pela linguagem C.</li>
+                            <li><strong>Código Mínimo:</strong> Ideal para rotinas de inicialização (*bootloaders*) onde
+                                o espaço é extremamente limitado.</li>
+                        </ul>
+                    </div>
+                    <p class="pt-2"><strong>Quando usar?</strong> Em cenários muito específicos: otimização de gargalos
+                        críticos, manipuladores de interrupção de altíssima velocidade e na inicialização do sistema,
+                        antes do ambiente C estar pronto.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hardware" class="mb-24 scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D5A]">A Interface com o Mundo Físico</h2>
+                <p class="max-w-3xl mx-auto text-gray-600 mt-2">
+                    Um sistema embarcado existe para interagir com o mundo. Ele faz isso através de um ciclo contínuo:
+                    ler o ambiente com **sensores**, processar a informação e agir sobre ele com **atuadores**. O
+                    microcontrolador (MCU) é o cérebro que orquestra esse fluxo. Passe o mouse sobre os elementos para
+                    saber mais.
+                </p>
+            </div>
+            <div class="content-card p-6 md:p-8">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-4">
+                    <div id="sensor" class="text-center p-4 rounded-lg transition-all duration-300 cursor-pointer">
+                        <span class="text-5xl">🌡️</span>
+                        <h4 class="text-xl font-bold mt-2">Sensores</h4>
+                        <p class="text-sm text-gray-500">(Entrada)</p>
+                        <div class="description hidden mt-2 text-sm bg-gray-100 p-3 rounded-md">Convertem uma grandeza
+                            física (temperatura, luz, pressão) em um sinal elétrico que o MCU pode ler.</div>
+                    </div>
+
+                    <div class="text-5xl text-[#A37B73] font-mono">&rarr;</div>
+
+                    <div id="mcu" class="text-center p-4 rounded-lg transition-all duration-300 cursor-pointer">
+                        <span class="text-5xl">🧠</span>
+                        <h4 class="text-xl font-bold mt-2">Microcontrolador</h4>
+                        <p class="text-sm text-gray-500">(Processamento)</p>
+                        <div class="description hidden mt-2 text-sm bg-gray-100 p-3 rounded-md">Executa a lógica
+                            programada em C/Assembly, toma decisões com base nas leituras dos sensores e envia comandos
+                            para os atuadores.</div>
+                    </div>
+
+                    <div class="text-5xl text-[#A37B73] font-mono">&rarr;</div>
+
+                    <div id="actuator" class="text-center p-4 rounded-lg transition-all duration-300 cursor-pointer">
+                        <span class="text-5xl">💡</span>
+                        <h4 class="text-xl font-bold mt-2">Atuadores</h4>
+                        <p class="text-sm text-gray-500">(Saída)</p>
+                        <div class="description hidden mt-2 text-sm bg-gray-100 p-3 rounded-md">Convertem um sinal
+                            elétrico do MCU em uma ação física (ligar um motor, acender um LED, mover um braço
+                            mecânico).</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="scroll-mt-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-[#6D5D5A]">Gerenciando a Complexidade: Processos de Desenvolvimento
+                </h2>
+                <p class="max-w-3xl mx-auto text-gray-600 mt-2">
+                    Criar software embarcado confiável exige um processo disciplinado. Não existe uma única metodologia
+                    perfeita; a escolha depende do projeto. O gráfico abaixo compara três abordagens populares. Clique
+                    nas legendas para ver os detalhes de cada uma.
+                </p>
+            </div>
+
+            <div class="content-card p-6 md:p-8">
+                <div class="chart-container">
+                    <canvas id="methodologyChart"></canvas>
+                </div>
+                <div id="methodology-details" class="mt-8 p-6 bg-gray-50 rounded-lg min-h-[150px]">
+                    <p class="text-center text-gray-500">Clique em uma metodologia na legenda do gráfico para ver os
+                        detalhes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="form" class="mb-24 scroll-mt-24 mt-10">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-[#6D5D5A]">Quiz interativo</h2>
+                <p class="text-gray-600 mt-2">Marque uma alternativa e veja o feedback imediato.</p>
+            </div>
+
+            <form id="quiz" class="content-card p-6 md:p-8 space-y-10">
+                <!-- Nível Fácil -->
+                <h3 class="text-2xl font-bold text-[#A37B73]">Nível Fácil</h3>
+
+                <!-- Q1 -->
+                <fieldset class="space-y-3" data-question="1">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        1) Numa geladeira que apita se a porta fica aberta, qual é o principal sensor que detecta a
+                        porta aberta e o principal atuador que emite o som?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q1" value="a"
+                            data-reason="Inverte papéis: o motor é atuador e o sensor magnético é o sensor." />
+                        <span>a) Sensor: O motor do compressor; Atuador: Um sensor magnético na porta.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q1" value="b" data-correct="true"
+                            data-reason="Correto: sensor magnético/luz detecta a porta e o buzzer atua emitindo som." />
+                        <span>b) Sensor: Um sensor magnético/luz na porta; Atuador: O buzzer que emite o alarme
+                            sonoro.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q1" value="c"
+                            data-reason="Termostato e lâmpada não são os principais para o alarme de porta." />
+                        <span>c) Sensor: O termostato que mede a temperatura interna; Atuador: A lâmpada da
+                            geladeira.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q1" value="d"
+                            data-reason="Display é saída/atuador; termostato é sensor de temperatura, não de porta." />
+                        <span>d) Sensor: O display digital na porta; Atuador: O termostato interno.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <!-- Q2 -->
+                <fieldset class="space-y-3" data-question="2">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        2) Por que um engenheiro usaria a linguagem C, e não Assembly, para programar quase todo o
+                        firmware de uma cafeteira moderna?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q2" value="a"
+                            data-reason="Falso: Assembly controla hardware da forma mais direta possível." />
+                        <span>a) Assembly não possui comandos capazes de controlar diretamente motores ou
+                            aquecedores.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q2" value="b" data-correct="true"
+                            data-reason="Correto: C equilibra legibilidade/produtividade com controle de baixo nível." />
+                        <span>b) C oferece um equilíbrio ideal entre legibilidade e produtividade, mantendo o controle
+                            de baixo nível necessário para manipular o hardware.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q2" value="c"
+                            data-reason="Falso: Assembly otimizado pode ser menor em memória que C." />
+                        <span>c) C consome significativamente menos memória RAM do que um código Assembly
+                            equivalente.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q2" value="d"
+                            data-reason="Falso: é portável, mas precisa de compilador específico por arquitetura." />
+                        <span>d) C é a única linguagem garantida para funcionar em todos os modelos de
+                            microcontroladores.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <!-- Nível Médio -->
+                <h3 class="text-2xl font-bold text-[#A37B73]">Nível Médio</h3>
+
+                <!-- Q3 -->
+                <fieldset class="space-y-3" data-question="3">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        3) O firmware de uma câmera está lento devido a uma única função matemática. Qual é a melhor
+                        estratégia para otimizar apenas esse "gargalo" de performance?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q3" value="a"
+                            data-reason="Caro e pode não resolver (gargalo é de software)." />
+                        <span>a) Trocar o microcontrolador por um modelo mais rápido, sem alterar o código.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q3" value="b" data-correct="true"
+                            data-reason="Correto: reescrever só a função crítica em Assembly e chamá-la de C." />
+                        <span>b) Isolar a função problemática e reescrevê-la em Assembly, chamando-a a partir do código
+                            C.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q3" value="c"
+                            data-reason="Reescrever tudo em Assembly é desnecessário e arriscado." />
+                        <span>c) Reescrever todo o firmware da câmera em Assembly para garantir a máxima
+                            performance.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q3" value="d"
+                            data-reason="Pode ajudar, mas gargalos severos costumam exigir otimização manual." />
+                        <span>d) Aumentar o nível de otimização do compilador e esperar que ele resolva o
+                            problema.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <!-- Q4 -->
+                <fieldset class="space-y-3" data-question="4">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        4) Para um sistema de elevador, com requisitos fixos e alta exigência de segurança e
+                        certificação, qual metodologia de desenvolvimento é a mais adequada?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q4" value="a"
+                            data-reason="Ágil é ótimo com requisitos mutáveis; aqui eles são fixos." />
+                        <span>a) Ágil (Scrum), pois permite adaptar o projeto a mudanças nos requisitos de
+                            segurança.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q4" value="b"
+                            data-reason="Prototipagem é técnica útil, mas não uma metodologia formal para certificação." />
+                        <span>b) Prototipagem Rápida, para criar e testar várias versões do controle em
+                            simulação.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q4" value="c"
+                            data-reason="TDD é disciplina técnica; não cobre rastreabilidade/metodologia completa." />
+                        <span>c) TDD (Test-Driven Development), focando exclusivamente na criação de testes
+                            unitários.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q4" value="d" data-correct="true"
+                            data-reason="Correto: o Modelo-V garante rastreabilidade e verificação formal para certificação." />
+                        <span>d) Modelo-V, pois sua estrutura formal é ideal para sistemas críticos com requisitos
+                            estáveis, garantindo rastreabilidade para certificação.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <!-- Nível Difícil -->
+                <h3 class="text-2xl font-bold text-[#6D5D5A]">Nível Difícil</h3>
+
+                <!-- Q5 -->
+                <fieldset class="space-y-3" data-question="5">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        5) Um drone precisa de um controle de voo super seguro (que não muda) e um sistema de rotas que
+                        atualiza sempre. Como gerenciar esse projeto com necessidades tão distintas?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q5" value="a"
+                            data-reason="Ágil puro não dá o rigor necessário ao núcleo crítico." />
+                        <span>a) Adotar uma metodologia Ágil para todo o projeto, evoluindo tudo junto.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q5" value="b"
+                            data-reason="Modelo-V puro falta flexibilidade para atualizações frequentes de rotas." />
+                        <span>b) Usar o Modelo-V para o projeto inteiro, sacrificando a agilidade das
+                            atualizações.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q5" value="c" data-correct="true"
+                            data-reason="Correto: híbrido — V para o núcleo crítico e Ágil para navegação." />
+                        <span>c) Implementar uma abordagem híbrida: Modelo-V para o núcleo de voo crítico e Ágil para o
+                            sistema de navegação.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q5" value="d"
+                            data-reason="Git é ferramenta; não substitui processo/metodologia." />
+                        <span>d) Focar exclusivamente no controle de versão com Git, priorizando a velocidade de
+                            inovação.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <!-- Q6 -->
+                <fieldset class="space-y-3" data-question="6">
+                    <legend class="font-semibold text-lg text-[#6D5D5A]">
+                        6) Um monitor cardíaco funciona por horas, mas reinicia esporadicamente após executar uma função
+                        de análise que usa grandes arrays locais. Qual a causa mais provável para esta falha sutil?
+                    </legend>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q6" value="a"
+                            data-reason="Bugs de compilador são raríssimos; normalmente é código." />
+                        <span>a) Um bug raro no compilador C que gera código de máquina inválido para essa
+                            função.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q6" value="b"
+                            data-reason="Leak no heap costuma falhar ao alocar, não resetar logo após a função." />
+                        <span>b) Um vazamento de memória (memory leak) causado pelo uso incorreto de malloc() na
+                            função.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q6" value="c" data-correct="true"
+                            data-reason="Correto: grandes arrays locais podem estourar a pilha e corromper memória." />
+                        <span>c) Um estouro de pilha (stack overflow), onde as variáveis locais da função excedem o
+                            espaço da pilha, corrompendo dados críticos.</span>
+                    </label>
+
+                    <label class="flex items-start gap-2">
+                        <input type="radio" name="q6" value="d"
+                            data-reason="Ruído causaria resets aleatórios, sem correlação forte com uma função." />
+                        <span>d) Ruído elétrico de equipamentos próximos, que interfere no pino de reset do
+                            microcontrolador.</span>
+                    </label>
+
+                    <div class="feedback hidden mt-2 text-sm p-3 rounded border"></div>
+                </fieldset>
+
+                <div class="pt-4 flex gap-3">
+                    <button type="button" id="reset-quiz"
+                        class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 border">Reiniciar</button>
+                </div>
+            </form>
+        </section>
+
+
+
+    </main>
+
+    <footer class="bg-white mt-24">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>Aplicação interativa criada para demonstrar os conceitos da pesquisa "A Arquitetura do Invisível".</p>
+            <p class="text-sm mt-2">Todos os conteúdos são baseados na literatura de referência citada no relatório
+                original.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

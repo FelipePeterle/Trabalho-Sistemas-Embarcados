@@ -1,0 +1,54 @@
+ body {
+     font-family: 'Inter', sans-serif;
+     background-color: #F8F7F4;
+     color: #4A4A4A;
+ }
+
+ .nav-link {
+     transition: color 0.3s, border-bottom-color 0.3s;
+     border-bottom: 2px solid transparent;
+ }
+
+ .nav-link:hover,
+ .nav-link.active {
+     color: #A37B73;
+     border-bottom-color: #A37B73;
+ }
+
+ .tab-button {
+     transition: background-color 0.3s, color 0.3s;
+ }
+
+ .tab-button.active {
+     background-color: #A37B73;
+     color: #FFFFFF;
+ }
+
+ .content-card {
+     background-color: #FFFFFF;
+     border: 1px solid #EAEAEA;
+     border-radius: 0.75rem;
+     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+     transition: transform 0.3s, box-shadow 0.3s;
+ }
+
+ .content-card:hover {
+     transform: translateY(-4px);
+     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+ }
+
+ .chart-container {
+     position: relative;
+     width: 100%;
+     max-width: 600px;
+     margin-left: auto;
+     margin-right: auto;
+     height: 300px;
+     max-height: 400px;
+ }
+
+ @media (min-width: 768px) {
+     .chart-container {
+         height: 400px;
+     }
+ }
